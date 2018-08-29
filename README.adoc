@@ -5,8 +5,8 @@ This application  demonstrates how to maintain data consistency in an Java/JDBC/
 
 The application consists of two services:
 
-* `Order Service` - creates orders
-* `Customer Service` - manages customers
+* `Employee Service` - creates employees
+* `User Service` - manages users
 
 Both services are implemented using Spring Boot, JPA and the https://github.com/eventuate-tram/eventuate-tram-sagas[Eventuate Tram Saga framework]
 
