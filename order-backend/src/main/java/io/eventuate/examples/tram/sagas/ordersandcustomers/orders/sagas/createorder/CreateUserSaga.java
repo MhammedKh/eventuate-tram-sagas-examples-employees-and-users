@@ -2,7 +2,8 @@ package io.eventuate.examples.tram.sagas.ordersandcustomers.orders.sagas.createo
 
 import static io.eventuate.tram.commands.consumer.CommandWithDestinationBuilder.send;
 
-import io.eventuate.examples.tram.sagas.ordersandcustomers.customers.api.commands.CreateEmployeeCommand;
+import com.sifast.employees.api.commands.CreateEmployeeCommand;
+
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.commandsandreplies.RejectUserCommand;
 import io.eventuate.tram.commands.consumer.CommandWithDestination;
 import io.eventuate.tram.sagas.orchestration.SagaDefinition;
