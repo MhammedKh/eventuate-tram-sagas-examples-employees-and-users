@@ -1,11 +1,6 @@
-package io.eventuate.examples.tram.sagas.ordersandcustomers.orders.common;
+package com.sifast.employeeandusers.users.webapi;
 
-import javax.persistence.Embeddable;
-
-@Embeddable
-public class UserDetails {
-
-    private Long id;
+public class UpdateUserRequest {
 
     private String firstName;
 
@@ -15,32 +10,15 @@ public class UserDetails {
 
     private String email;
 
-    public UserDetails() {
+    public UpdateUserRequest() {
     }
 
-    public UserDetails(String firstName, String matricule, String lastName, String email) {
+    public UpdateUserRequest(Long orderId, String firstName, String matricule, String lastName, String email) {
         super();
         this.firstName = firstName;
         this.matricule = matricule;
         this.lastName = lastName;
         this.email = email;
-    }
-
-    public UserDetails(Long id, String firstName, String matricule, String lastName, String email) {
-        super();
-        this.id = id;
-        this.firstName = firstName;
-        this.matricule = matricule;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {

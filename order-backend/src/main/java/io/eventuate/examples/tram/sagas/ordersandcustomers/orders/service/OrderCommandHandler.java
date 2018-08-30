@@ -21,9 +21,16 @@ public class OrderCommandHandler {
 
     public Message reject(CommandMessage<RejectUserCommand> cm) {
 
-        System.out.println("***delete employee");
-        long userId = cm.getCommand().getUserId();
-        userService.deleteUser(userId);
+        if (cm.getCommand().isRejectCreate()) {
+            System.out.println("***delete user");
+            long userId = cm.getCommand().getOldUser().getId();
+            userService.deleteUser(userId);
+        }
+
+        if (cm.getCommand().isRejectUpdate()) {
+            System.out.println("***update user");
+            userService.updateUser(cm.getCommand().getOldUser());
+        }
         return withSuccess();
     }
 

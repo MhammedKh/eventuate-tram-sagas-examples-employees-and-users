@@ -5,6 +5,7 @@ import static io.eventuate.tram.commands.consumer.CommandWithDestinationBuilder.
 import com.sifast.employees.api.commands.CreateEmployeeCommand;
 
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.commandsandreplies.RejectUserCommand;
+import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.domain.User;
 import io.eventuate.tram.commands.consumer.CommandWithDestination;
 import io.eventuate.tram.sagas.orchestration.SagaDefinition;
 import io.eventuate.tram.sagas.simpledsl.SimpleSaga;
@@ -24,6 +25,6 @@ public class CreateUserSaga implements SimpleSaga<CreateUserSagaData> {
 
     public CommandWithDestination reject(CreateUserSagaData data) {
         System.out.println("***reject" + data.getId());
-        return send(new RejectUserCommand(data.getId())).to("userService").build();
+        return send(new RejectUserCommand(new User(data.getId(), data.getEmail()), true, false)).to("userService").build();
     }
 }

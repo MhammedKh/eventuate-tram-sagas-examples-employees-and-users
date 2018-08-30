@@ -1,9 +1,8 @@
-package io.eventuate.examples.tram.sagas.ordersandcustomers.orders.common;
+package com.sifast.employees.api.commands;
 
-import javax.persistence.Embeddable;
+import io.eventuate.tram.commands.common.Command;
 
-@Embeddable
-public class UserDetails {
+public class UpdateEmployeeCommand implements Command {
 
     private Long id;
 
@@ -13,26 +12,14 @@ public class UserDetails {
 
     private String lastName;
 
-    private String email;
-
-    public UserDetails() {
+    public UpdateEmployeeCommand() {
     }
 
-    public UserDetails(String firstName, String matricule, String lastName, String email) {
-        super();
-        this.firstName = firstName;
-        this.matricule = matricule;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
-    public UserDetails(Long id, String firstName, String matricule, String lastName, String email) {
-        super();
+    public UpdateEmployeeCommand(Long id, String firstName, String matricule, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.matricule = matricule;
         this.lastName = lastName;
-        this.email = email;
     }
 
     public Long getId() {
@@ -65,14 +52,6 @@ public class UserDetails {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
 }

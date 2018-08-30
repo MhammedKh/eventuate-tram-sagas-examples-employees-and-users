@@ -1,9 +1,8 @@
-package io.eventuate.examples.tram.sagas.ordersandcustomers.orders.common;
+package io.eventuate.examples.tram.sagas.ordersandcustomers.orders.sagas.updateorder;
 
-import javax.persistence.Embeddable;
+import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.domain.User;
 
-@Embeddable
-public class UserDetails {
+public class UpdateUserSagaData {
 
     private Long id;
 
@@ -15,24 +14,20 @@ public class UserDetails {
 
     private String email;
 
-    public UserDetails() {
-    }
+    private User oldUser;
 
-    public UserDetails(String firstName, String matricule, String lastName, String email) {
+    public UpdateUserSagaData() {
         super();
-        this.firstName = firstName;
-        this.matricule = matricule;
-        this.lastName = lastName;
-        this.email = email;
     }
 
-    public UserDetails(Long id, String firstName, String matricule, String lastName, String email) {
+    public UpdateUserSagaData(Long id, String firstName, String matricule, String lastName, String email, User oldUser) {
         super();
         this.id = id;
         this.firstName = firstName;
         this.matricule = matricule;
         this.lastName = lastName;
         this.email = email;
+        this.oldUser = oldUser;
     }
 
     public Long getId() {
@@ -73,6 +68,20 @@ public class UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public User getOldUser() {
+        return oldUser;
+    }
+
+    public void setOldUser(User oldUser) {
+        this.oldUser = oldUser;
+    }
+
+    @Override
+    public String toString() {
+        return "UpdateUserSagaData [id=" + id + ", firstName=" + firstName + ", matricule=" + matricule + ", lastName=" + lastName + ", email=" + email + ", oldUser=" + oldUser
+                + "]";
     }
 
 }

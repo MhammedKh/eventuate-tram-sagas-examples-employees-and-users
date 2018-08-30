@@ -25,6 +25,11 @@ public class Employee {
     @Column(name = "EMP_LAST_NAME", nullable = false, length = 50)
     private String lastName;
 
+    public Employee() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
     public Employee(int id, String firstName, String matricule, String lastName) {
         super();
         this.id = id;

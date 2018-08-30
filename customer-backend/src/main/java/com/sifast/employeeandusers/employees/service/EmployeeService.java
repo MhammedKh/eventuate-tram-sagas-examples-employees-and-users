@@ -12,7 +12,7 @@ public class EmployeeService {
     private EmployeeRepository employeeRepository;
 
     @Transactional
-    public Employee createEmployee(Employee employee) {
+    public Employee createOrUpdateEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }
 }

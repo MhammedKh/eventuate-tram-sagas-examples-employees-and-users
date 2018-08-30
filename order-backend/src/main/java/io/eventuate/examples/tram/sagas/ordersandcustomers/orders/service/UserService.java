@@ -32,4 +32,15 @@ public class UserService {
         userRepository.delete(userId);
     }
 
+    @Transactional
+    public User updateUser(UserDetails user) {
+        User userUpdated = userRepository.save(new User(user.getId(), user.getEmail()));
+        System.out.println("**** userUpdated " + userUpdated.toString());
+        return userUpdated;
+    }
+
+    public void updateUser(User user) {
+        userRepository.save(user);
+    }
+
 }
