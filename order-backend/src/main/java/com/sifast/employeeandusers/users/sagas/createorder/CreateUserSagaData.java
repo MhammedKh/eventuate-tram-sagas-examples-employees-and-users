@@ -1,11 +1,10 @@
-package io.eventuate.examples.tram.sagas.ordersandcustomers.orders.common;
+package com.sifast.employeeandusers.users.sagas.createorder;
 
-import javax.persistence.Embeddable;
+import com.sifast.employees.api.commands.CreateUserReply;
 
-@Embeddable
-public class UserDetails {
+public class CreateUserSagaData {
 
-    private Long id;
+    private int id;
 
     private String firstName;
 
@@ -15,18 +14,11 @@ public class UserDetails {
 
     private String email;
 
-    public UserDetails() {
-    }
-
-    public UserDetails(String firstName, String matricule, String lastName, String email) {
+    public CreateUserSagaData() {
         super();
-        this.firstName = firstName;
-        this.matricule = matricule;
-        this.lastName = lastName;
-        this.email = email;
     }
 
-    public UserDetails(Long id, String firstName, String matricule, String lastName, String email) {
+    public CreateUserSagaData(int id, String firstName, String matricule, String lastName, String email) {
         super();
         this.id = id;
         this.firstName = firstName;
@@ -35,11 +27,11 @@ public class UserDetails {
         this.email = email;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -73,6 +65,11 @@ public class UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void handleCreateUserReply(CreateUserReply reply) {
+        System.out.println("getUserId {}" + reply.getUserId());
+        setId(reply.getUserId());
     }
 
 }

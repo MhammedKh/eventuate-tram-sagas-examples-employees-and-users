@@ -15,7 +15,7 @@ docker-compose -f docker-compose-${DATABASE?}.yml up -d --build cdcservice
 
 ./wait-for-services.sh $DOCKER_HOST_IP "8099"
 
-./gradlew -x :end-to-end-tests:test build
+./gradlew assemble
 
 docker-compose -f docker-compose-${DATABASE?}.yml up -d --build 
 

@@ -1,17 +1,17 @@
 package com.sifast.employeeandusers.users.webapi;
 
-
 public class CreateUserResponse {
-  private Long orderId;
 
-  public CreateUserResponse() {
-  }
+    private int orderId;
 
-  public CreateUserResponse(Long orderId) {
-    this.orderId = orderId;
-  }
+    public CreateUserResponse() {
+    }
 
-  public Long getOrderId() {
-    return orderId;
-  }
+    public CreateUserResponse(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
 }

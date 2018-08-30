@@ -16,23 +16,22 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "EMP_USER_ID", updatable = false, nullable = false, length = 50)
+    private int user_id;
+
     @Column(name = "EMP_FIRST_NAME", nullable = false, length = 50)
     private String firstName;
 
     @Column(name = "EMP_MATRICULE", nullable = false, length = 10)
-    private String matricule;
+    private int matricule;
 
     @Column(name = "EMP_LAST_NAME", nullable = false, length = 50)
     private String lastName;
 
-    public Employee() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-    public Employee(int id, String firstName, String matricule, String lastName) {
+    public Employee(int id, int user_id, String firstName, int matricule, String lastName) {
         super();
         this.id = id;
+        this.user_id = user_id;
         this.firstName = firstName;
         this.matricule = matricule;
         this.lastName = lastName;
@@ -46,6 +45,14 @@ public class Employee {
         this.id = id;
     }
 
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -54,11 +61,11 @@ public class Employee {
         this.firstName = firstName;
     }
 
-    public String getMatricule() {
+    public int getMatricule() {
         return matricule;
     }
 
-    public void setMatricule(String matricule) {
+    public void setMatricule(int matricule) {
         this.matricule = matricule;
     }
 

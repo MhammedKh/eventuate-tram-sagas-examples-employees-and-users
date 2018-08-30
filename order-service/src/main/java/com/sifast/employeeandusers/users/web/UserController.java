@@ -7,11 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sifast.employeeandusers.users.common.UserDetails;
+import com.sifast.employeeandusers.users.sagas.createorder.CreateUserSagaData;
 import com.sifast.employeeandusers.users.webapi.CreateUserRequest;
 import com.sifast.employeeandusers.users.webapi.CreateUserResponse;
 import com.sifast.employeeandusers.users.webapi.UpdateUserRequest;
 import com.sifast.employeeandusers.users.webapi.UpdateUserResponse;
 
+<<<<<<< 9db08f142f3f650860ef88b6ad0ca9dc314b05df
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.common.UserDetails;
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.domain.User;
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.domain.UserRepository;
@@ -19,12 +22,15 @@ import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.sagas.updateor
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.service.UserService;
 import io.eventuate.tram.sagas.orchestration.SagaManager;
 import io.swagger.annotations.ApiParam;
+=======
+import io.eventuate.tram.sagas.orchestration.SagaManager;
+>>>>>>> add employee saga in progress
 
 @RestController
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private SagaManager<CreateUserSagaData> createOrderSagaManager;
 
     @Autowired
     private UserRepository userRepository;
@@ -34,10 +40,12 @@ public class UserController {
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public CreateUserResponse createOrder(@RequestBody CreateUserRequest createUserRequest) {
+        UserDetails userDetails = new UserDetails(createUserRequest.getFirstName(), createUserRequest.getMatricule(), createUserRequest.getLastName(),
+                createUserRequest.getEmail());
 
-        User user = userService
-                .createUser(new UserDetails(createUserRequest.getFirstName(), createUserRequest.getMatricule(), createUserRequest.getLastName(), createUserRequest.getEmail()));
-        return new CreateUserResponse(user.getId());
+        CreateUserSagaData data = new CreateUserSagaData(0, userDetails.getFirstName(), userDetails.getMatricule(), userDetails.getLastName(), userDetails.getEmail());
+        createOrderSagaManager.create(data);
+        return new CreateUserResponse(0);
     }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)

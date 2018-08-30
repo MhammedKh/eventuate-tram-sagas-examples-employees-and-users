@@ -1,4 +1,4 @@
-package io.eventuate.examples.tram.sagas.ordersandcustomers.orders.domain;
+package com.sifast.employeeandusers.users.domain;
 
 import java.util.Collections;
 
@@ -19,7 +19,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     private String email;
 
@@ -31,7 +31,7 @@ public class User {
         this.email = email;
     }
 
-    public User(Long id, String email) {
+    public User(int id, String email) {
         super();
         this.id = id;
         this.email = email;
@@ -41,11 +41,11 @@ public class User {
         return new ResultWithEvents<User>(new User(email), Collections.emptyList());
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

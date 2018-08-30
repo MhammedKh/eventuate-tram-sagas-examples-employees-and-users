@@ -4,7 +4,7 @@ import io.eventuate.tram.commands.common.Command;
 
 public class CreateEmployeeCommand implements Command {
 
-    private Long id;
+    private int id;
 
     private String firstName;
 
@@ -15,18 +15,18 @@ public class CreateEmployeeCommand implements Command {
     public CreateEmployeeCommand() {
     }
 
-    public CreateEmployeeCommand(Long id, String firstName, String matricule, String lastName) {
+    public CreateEmployeeCommand(int id, String firstName, String matricule, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.matricule = matricule;
         this.lastName = lastName;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

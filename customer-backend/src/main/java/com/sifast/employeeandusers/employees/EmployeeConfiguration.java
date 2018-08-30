@@ -3,38 +3,46 @@ package com.sifast.employeeandusers.employees;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.sifast.employeeandusers.employees.service.CustomerCommandHandler;
+import com.sifast.employeeandusers.employees.service.EmployeeCommandHandler;
 import com.sifast.employeeandusers.employees.service.EmployeeService;
+import com.sifast.employeeandusers.users.sagas.create.employee.CreateEmployeeSaga;
+import com.sifast.employeeandusers.users.sagas.create.employee.CreateEmployeeSagaData;
 
 import io.eventuate.tram.commands.consumer.CommandDispatcher;
+import io.eventuate.tram.sagas.orchestration.Saga;
+import io.eventuate.tram.sagas.orchestration.SagaManager;
+import io.eventuate.tram.sagas.orchestration.SagaManagerImpl;
 import io.eventuate.tram.sagas.participant.SagaCommandDispatcher;
-import io.eventuate.tram.sagas.participant.SagaLockManager;
-import io.eventuate.tram.sagas.participant.SagaParticipantConfiguration;
 
 @Configuration
-@Import(SagaParticipantConfiguration.class)
 @EnableJpaRepositories
 @EnableAutoConfiguration
 public class EmployeeConfiguration {
 
     @Bean
-    public EmployeeService employeerService() {
+    public SagaManager<CreateEmployeeSagaData> createEmployeeSagaManager(Saga<CreateEmployeeSagaData> saga) {
+        return new SagaManagerImpl<>(saga);
+    }
+
+    @Bean
+    public EmployeeService employeeService() {
         return new EmployeeService();
     }
 
     @Bean
-    public CustomerCommandHandler customerCommandHandler() {
-        return new CustomerCommandHandler();
+    public CreateEmployeeSaga createEmployeeSaga() {
+        return new CreateEmployeeSaga();
     }
 
-    // TODO Exception handler for CustomerCreditLimitExceededException
+    @Bean
+    public EmployeeCommandHandler employeeCommandHandler() {
+        return new EmployeeCommandHandler();
+    }
 
     @Bean
-    public CommandDispatcher consumerCommandDispatcher(CustomerCommandHandler target, SagaLockManager sagaLockManager) {
-
+    public CommandDispatcher employeeCommandDispatcher(EmployeeCommandHandler target) {
         return new SagaCommandDispatcher("employeeCommandDispatcher", target.commandHandlerDefinitions());
     }
 

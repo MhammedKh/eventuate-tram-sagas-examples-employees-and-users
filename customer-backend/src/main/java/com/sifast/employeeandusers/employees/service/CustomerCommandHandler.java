@@ -31,9 +31,14 @@ public class CustomerCommandHandler {
         CreateEmployeeCommand cmd = cm.getCommand();
         boolean isEmployeeCreated = false;
         try {
-            Employee employee = new Employee(0, cmd.getFirstName(), cmd.getMatricule(), cmd.getLastName());
+            Employee employee = new Employee(0, cmd.getId(), cmd.getFirstName(), cmd.getMatricule(), cmd.getLastName());
             System.out.println("**** " + employee.toString());
+<<<<<<< 9db08f142f3f650860ef88b6ad0ca9dc314b05df
             employeerService.createOrUpdateEmployee(employee);
+=======
+            // Integer.parseInt("aaa");
+            employeerService.createEmployee(employee);
+>>>>>>> add employee saga in progress
             isEmployeeCreated = true;
             System.out.println("**** Employee created successfuly");
             return CommandHandlerReplyBuilder.withSuccess(new EmployeeCreated());
@@ -46,6 +51,7 @@ public class CustomerCommandHandler {
         }
     }
 
+<<<<<<< 9db08f142f3f650860ef88b6ad0ca9dc314b05df
     public Message updateEmployee(CommandMessage<UpdateEmployeeCommand> cm) {
         System.out.println("**** update Employee in progress");
         UpdateEmployeeCommand cmd = cm.getCommand();
@@ -70,4 +76,6 @@ public class CustomerCommandHandler {
     // withLock(Customer.class, customerId).
     // TODO @Validate to trigger validation and error reply
 
+=======
+>>>>>>> add employee saga in progress
 }

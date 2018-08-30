@@ -1,6 +1,9 @@
-package io.eventuate.examples.tram.sagas.ordersandcustomers.orders.sagas.createorder;
+package com.sifast.employeeandusers.users.common;
 
-public class CreateUserSagaData {
+import javax.persistence.Embeddable;
+
+@Embeddable
+public class UserDetails {
 
     private Long id;
 
@@ -12,11 +15,18 @@ public class CreateUserSagaData {
 
     private String email;
 
-    public CreateUserSagaData() {
-        super();
+    public UserDetails() {
     }
 
-    public CreateUserSagaData(Long id, String firstName, String matricule, String lastName, String email) {
+    public UserDetails(String firstName, String matricule, String lastName, String email) {
+        super();
+        this.firstName = firstName;
+        this.matricule = matricule;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    public UserDetails(Long id, String firstName, String matricule, String lastName, String email) {
         super();
         this.id = id;
         this.firstName = firstName;
