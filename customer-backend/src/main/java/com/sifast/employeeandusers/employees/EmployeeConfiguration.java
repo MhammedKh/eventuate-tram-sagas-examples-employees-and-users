@@ -10,6 +10,8 @@ import com.sifast.employeeandusers.employees.service.EmployeeService;
 import com.sifast.employeeandusers.users.sagas.create.employee.CreateEmployeeSaga;
 import com.sifast.employeeandusers.users.sagas.create.employee.CreateEmployeeSagaData;
 
+import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.sagas.updateorder.UpdateEmployeeSaga;
+import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.sagas.updateorder.UpdateEmployeeSagaData;
 import io.eventuate.tram.commands.consumer.CommandDispatcher;
 import io.eventuate.tram.sagas.orchestration.Saga;
 import io.eventuate.tram.sagas.orchestration.SagaManager;
@@ -29,6 +31,16 @@ public class EmployeeConfiguration {
     @Bean
     public EmployeeService employeeService() {
         return new EmployeeService();
+    }
+
+    @Bean
+    public UpdateEmployeeSaga updateEmployeeSaga() {
+        return new UpdateEmployeeSaga();
+    }
+
+    @Bean
+    public SagaManager<UpdateEmployeeSagaData> updateOrderSagaManager(Saga<UpdateEmployeeSagaData> saga) {
+        return new SagaManagerImpl<>(saga);
     }
 
     @Bean

@@ -1,7 +1,8 @@
 dependencies {
     compile project(":common")
     compile project(":customer-api")
-
+    compile project(":user-api")
+	
     compile "io.eventuate.tram.sagas:eventuate-jpa-sagas-framework:$eventuateTramSagasVersion"
     compile "io.eventuate.tram.sagas:eventuate-tram-sagas-simple-dsl:$eventuateTramSagasVersion"
     compile "io.eventuate.tram.core:eventuate-tram-jdbc-kafka:$eventuateTramVersion"
@@ -11,5 +12,7 @@ dependencies {
         exclude group: "org.slf4j", module: "slf4j-simple"
     }
 
-    compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+	compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
+
 }

@@ -15,10 +15,10 @@ import com.sifast.swagger.CommonSwaggerConfiguration;
 @ComponentScan
 public class UserWebConfiguration {
 
-  @Bean
-  public HttpMessageConverters customConverters() {
-    HttpMessageConverter<?> additional = new MappingJackson2HttpMessageConverter();
-    return new HttpMessageConverters(additional);
-  }
+    @Bean
+    public HttpMessageConverters customConverters() {
+        HttpMessageConverter<?> additional = new MappingJackson2HttpMessageConverter();
+        return new HttpMessageConverters(additional);
+    }
 
 }

@@ -1,10 +1,6 @@
-package com.sifast.employeeandusers.users.sagas.createorder;
+package com.sifast.employeeanduser.employees.webapi;
 
-import com.sifast.employees.api.commands.CreateUserReply;
-
-public class CreateUserSagaData {
-
-    private int id;
+public class CreateEmployeeRequest {
 
     private String firstName;
 
@@ -14,25 +10,15 @@ public class CreateUserSagaData {
 
     private String email;
 
-    public CreateUserSagaData() {
-        super();
+    public CreateEmployeeRequest() {
     }
 
-    public CreateUserSagaData(int id, String firstName, String matricule, String lastName, String email) {
+    public CreateEmployeeRequest(String firstName, String matricule, String lastName, String email) {
         super();
-        this.id = id;
         this.firstName = firstName;
         this.matricule = matricule;
         this.lastName = lastName;
         this.email = email;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -65,11 +51,6 @@ public class CreateUserSagaData {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void handleCreateUserReply(CreateUserReply reply) {
-        System.out.println("getUserId {}" + reply.getUserId());
-        setId(reply.getUserId());
     }
 
 }

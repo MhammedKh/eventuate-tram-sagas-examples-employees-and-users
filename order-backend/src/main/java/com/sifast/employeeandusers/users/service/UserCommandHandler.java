@@ -4,10 +4,10 @@ import static io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder.wit
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.sifast.employeeandusers.users.commandsandreplies.RejectUserCommand;
 import com.sifast.employeeandusers.users.domain.User;
 import com.sifast.employees.api.commands.CreateUserCommand;
 import com.sifast.employees.api.commands.CreateUserReply;
+import com.sifast.employees.api.commands.RejectUserCommand;
 
 import io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder;
 import io.eventuate.tram.commands.consumer.CommandHandlers;

@@ -1,8 +1,8 @@
-package io.eventuate.examples.tram.sagas.ordersandcustomers.orders.sagas.updateorder;
+package com.sifast.employeeandusers.users.sagas.update.employee;
 
-import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.domain.User;
+import com.sifast.employeeandusers.users.domain.User;
 
-public class UpdateUserSagaData {
+public class UpdateEmployeeSagaData {
 
     private Long id;
 
@@ -16,11 +16,11 @@ public class UpdateUserSagaData {
 
     private User oldUser;
 
-    public UpdateUserSagaData() {
+    public UpdateEmployeeSagaData() {
         super();
     }
 
-    public UpdateUserSagaData(Long id, String firstName, String matricule, String lastName, String email, User oldUser) {
+    public UpdateEmployeeSagaData(Long id, String firstName, String matricule, String lastName, String email, User oldUser) {
         super();
         this.id = id;
         this.firstName = firstName;

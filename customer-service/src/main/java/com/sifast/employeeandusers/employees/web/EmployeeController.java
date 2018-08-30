@@ -1,23 +1,29 @@
 package com.sifast.employeeandusers.employees.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sifast.employeeandusers.employees.service.EmployeeService;
+import com.sifast.employeeanduser.employees.webapi.CreateEmployeeRequest;
+import com.sifast.employeeanduser.employees.webapi.CreateEmployeeResponse;
+import com.sifast.employeeandusers.users.sagas.create.employee.CreateEmployeeSagaData;
+
+import io.eventuate.tram.sagas.orchestration.SagaManager;
 
 @RestController
 public class EmployeeController {
 
-    private EmployeeService employeeService;
-
     @Autowired
-    public EmployeeController(EmployeeService customerService) {
-        this.employeeService = customerService;
-    }
+    private SagaManager<CreateEmployeeSagaData> createOrderSagaManager;
 
-    // @RequestMapping(value = "/customers", method = RequestMethod.POST)
-    // public CreateCustomerResponse createCustomer(@RequestBody CreateCustomerRequest createCustomerRequest) {
-    // Employee customer = customerService.createCustomer(createCustomerRequest.getName(), createCustomerRequest.getCreditLimit());
-    // return new CreateCustomerResponse(customer.getId());
-    // }
+    @RequestMapping(value = "/employeess", method = RequestMethod.POST)
+    public CreateEmployeeResponse createOrder(@RequestBody CreateEmployeeRequest createUserRequest) {
+
+        CreateEmployeeSagaData data = new CreateEmployeeSagaData(createUserRequest.getFirstName(), createUserRequest.getMatricule(), createUserRequest.getLastName(),
+                createUserRequest.getEmail());
+        createOrderSagaManager.create(data);
+        return new CreateEmployeeResponse(0);
+    }
 }
