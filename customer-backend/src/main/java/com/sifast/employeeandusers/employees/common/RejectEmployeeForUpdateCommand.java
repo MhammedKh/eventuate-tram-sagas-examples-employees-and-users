@@ -1,25 +1,25 @@
-package com.sifast.employees.api.commands;
+package com.sifast.employeeandusers.employees.common;
 
-import com.sifast.employeeandusers.users.domain.User;
+import com.sifast.employeeandusers.employees.domain.Employee;
 
 import io.eventuate.tram.commands.common.Command;
 
-public class RejectUserCommand implements Command {
+public class RejectEmployeeForUpdateCommand implements Command {
 
     private int userId;
 
-    private User oldUser;
+    private Employee oldEmployee;
 
     private boolean isRejectCreate;
 
     private boolean isRejectUpdate;
 
-    public RejectUserCommand() {
+    public RejectEmployeeForUpdateCommand() {
     }
 
-    public RejectUserCommand(User oldUser, boolean isRejectCreate, boolean isRejectUpdate) {
+    public RejectEmployeeForUpdateCommand(Employee oldEmployee, boolean isRejectCreate, boolean isRejectUpdate) {
         super();
-        this.oldUser = oldUser;
+        this.oldEmployee = oldEmployee;
         this.isRejectCreate = isRejectCreate;
         this.isRejectUpdate = isRejectUpdate;
     }
@@ -32,12 +32,12 @@ public class RejectUserCommand implements Command {
         this.userId = userId;
     }
 
-    public User getOldUser() {
-        return oldUser;
+    public Employee getOldEmployee() {
+        return oldEmployee;
     }
 
-    public void setOldUser(User oldUser) {
-        this.oldUser = oldUser;
+    public void setOldEmployee(Employee oldEmployee) {
+        this.oldEmployee = oldEmployee;
     }
 
     public boolean isRejectCreate() {

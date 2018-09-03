@@ -1,7 +1,5 @@
 package com.sifast.employeeandusers.users.domain;
 
-import java.util.Collections;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
@@ -9,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import io.eventuate.tram.events.ResultWithEvents;
 
 @Entity
 @Table(name = "users")
@@ -35,10 +31,6 @@ public class User {
         super();
         this.id = id;
         this.email = email;
-    }
-
-    public static ResultWithEvents<User> createUser(String email) {
-        return new ResultWithEvents<User>(new User(email), Collections.emptyList());
     }
 
     public int getId() {

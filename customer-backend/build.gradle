@@ -1,6 +1,7 @@
 dependencies {
     compile project(":common")
     compile project(":customer-api")
+	compile project(":order-backend")
     compile project(":user-api")
 	
     compile "io.eventuate.tram.sagas:eventuate-jpa-sagas-framework:$eventuateTramSagasVersion"

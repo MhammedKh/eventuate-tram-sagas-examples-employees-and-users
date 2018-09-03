@@ -1,10 +1,13 @@
 package com.sifast.employeeandusers.users.sagas.update.employee;
 
-import com.sifast.employeeandusers.users.domain.User;
+import com.sifast.employeeandusers.employees.common.UpdateEmployeeReply;
+import com.sifast.employeeandusers.employees.domain.Employee;
 
 public class UpdateEmployeeSagaData {
 
-    private Long id;
+    private int id;
+
+    private int userId;
 
     private String firstName;
 
@@ -14,27 +17,34 @@ public class UpdateEmployeeSagaData {
 
     private String email;
 
-    private User oldUser;
+    private Employee oldEmployee;
 
     public UpdateEmployeeSagaData() {
         super();
     }
 
-    public UpdateEmployeeSagaData(Long id, String firstName, String matricule, String lastName, String email, User oldUser) {
+    public UpdateEmployeeSagaData(int id, String firstName, String matricule, String lastName, String email) {
         super();
         this.id = id;
         this.firstName = firstName;
         this.matricule = matricule;
         this.lastName = lastName;
         this.email = email;
-        this.oldUser = oldUser;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -70,17 +80,23 @@ public class UpdateEmployeeSagaData {
         this.email = email;
     }
 
-    public User getOldUser() {
-        return oldUser;
+    public Employee getOldEmployee() {
+        return oldEmployee;
     }
 
-    public void setOldUser(User oldUser) {
-        this.oldUser = oldUser;
+    public void setOldEmployee(Employee oldEmployee) {
+        this.oldEmployee = oldEmployee;
+    }
+
+    public void handleUpdateEmployeeReply(UpdateEmployeeReply reply) {
+        System.out.println("Oldemployee {}" + reply.getOldEmployee());
+        setOldEmployee(reply.getOldEmployee());
+        setUserId(reply.getOldEmployee().getUserId());
     }
 
     @Override
     public String toString() {
-        return "UpdateUserSagaData [id=" + id + ", firstName=" + firstName + ", matricule=" + matricule + ", lastName=" + lastName + ", email=" + email + ", oldUser=" + oldUser
+        return "UpdateUserSagaData [id=" + id + ", firstName=" + firstName + ", matricule=" + matricule + ", lastName=" + lastName + ", email=" + email + ", oldUser=" + oldEmployee
                 + "]";
     }
 

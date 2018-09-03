@@ -1,17 +1,23 @@
 package com.sifast.employeeandusers.users.webapi;
 
-
 public class UpdateUserResponse {
-  private Long orderId;
 
-  public UpdateUserResponse() {
-  }
+    private int userId;
 
-  public UpdateUserResponse(Long orderId) {
-    this.orderId = orderId;
-  }
+    public UpdateUserResponse() {
+    }
 
-  public Long getOrderId() {
-    return orderId;
-  }
+    public UpdateUserResponse(int userId) {
+        super();
+        this.userId = userId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
 }

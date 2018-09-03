@@ -9,15 +9,15 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Employee")
+
 public class Employee {
 
     @Id
-    // @Column(name = "EMP_ID", updatable = false, nullable = false, length = 50)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "EMP_USER_ID", updatable = false, nullable = false, length = 50)
-    private int user_id;
+    private int userId;
 
     @Column(name = "EMP_FIRST_NAME", nullable = false, length = 50)
     private String firstName;
@@ -28,10 +28,18 @@ public class Employee {
     @Column(name = "EMP_LAST_NAME", nullable = false, length = 50)
     private String lastName;
 
-    public Employee(int id, int user_id, String firstName, int matricule, String lastName) {
+    public Employee(int userId, String firstName, int matricule, String lastName) {
+        super();
+        this.userId = userId;
+        this.firstName = firstName;
+        this.matricule = matricule;
+        this.lastName = lastName;
+    }
+
+    public Employee(int id, int userId, String firstName, int matricule, String lastName) {
         super();
         this.id = id;
-        this.user_id = user_id;
+        this.userId = userId;
         this.firstName = firstName;
         this.matricule = matricule;
         this.lastName = lastName;
@@ -45,12 +53,12 @@ public class Employee {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {

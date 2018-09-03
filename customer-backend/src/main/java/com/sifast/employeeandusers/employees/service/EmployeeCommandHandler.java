@@ -2,10 +2,14 @@ package com.sifast.employeeandusers.employees.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.sifast.employeeandusers.employees.common.RejectEmployeeForUpdateCommand;
+import com.sifast.employeeandusers.employees.common.UpdateEmployeeReply;
 import com.sifast.employeeandusers.employees.domain.Employee;
 import com.sifast.employees.api.commands.CreateEmployeeCommand;
+import com.sifast.employees.api.commands.UpdateEmployeeCommand;
 import com.sifast.employees.api.replies.EmployeeCreated;
 import com.sifast.employees.api.replies.EmployeeNotCreated;
+import com.sifast.employees.api.replies.EmployeeNotUpdated;
 
 import io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder;
 import io.eventuate.tram.commands.consumer.CommandHandlers;
@@ -19,12 +23,14 @@ public class EmployeeCommandHandler {
     private EmployeeService employeerService;
 
     public CommandHandlers commandHandlerDefinitions() {
-        return SagaCommandHandlersBuilder.fromChannel("employeeService").onMessage(CreateEmployeeCommand.class, this::createEmployee).build();
+        return SagaCommandHandlersBuilder.fromChannel("employeeService").onMessage(CreateEmployeeCommand.class, this::createEmployee)
+                .onMessage(UpdateEmployeeCommand.class, this::updateEmployee).onMessage(RejectEmployeeForUpdateCommand.class, this::rejectEmployee).build();
     }
 
     public Message createEmployee(CommandMessage<CreateEmployeeCommand> cm) {
-        System.out.println("**** create Employee in progress");
         CreateEmployeeCommand cmd = cm.getCommand();
+        System.out.println("**** create Employee in progress " + cmd.getId());
+
         boolean isEmployeeCreated = false;
         try {
             Employee employee = new Employee(0, cmd.getId(), cmd.getFirstName(), Integer.parseInt(cmd.getMatricule()), cmd.getLastName());
@@ -38,6 +44,39 @@ public class EmployeeCommandHandler {
                 return CommandHandlerReplyBuilder.withFailure(new EmployeeNotCreated());
             } else {
                 return CommandHandlerReplyBuilder.withSuccess(new EmployeeCreated());
+            }
+        }
+    }
+
+    public Message rejectEmployee(CommandMessage<RejectEmployeeForUpdateCommand> cm) {
+        try {
+            System.out.println("**** update Employee in progress " + cm.getCommand().getOldEmployee());
+            employeerService.createOrUpdateEmployee(cm.getCommand().getOldEmployee());
+            return CommandHandlerReplyBuilder.withSuccess();
+        } catch (Exception e) {
+            return CommandHandlerReplyBuilder.withFailure();
+        }
+    }
+
+    public Message updateEmployee(CommandMessage<UpdateEmployeeCommand> cm) {
+        System.out.println("**** update Employee in progress");
+        UpdateEmployeeCommand cmd = cm.getCommand();
+        boolean isEmployeeUpdated = false;
+        Employee oldEmployee = null;
+        try {
+            oldEmployee = employeerService.findById(cmd.getId());
+            System.out.println("**** old employee " + oldEmployee.toString());
+            Employee employee = new Employee(oldEmployee.getId(), oldEmployee.getUserId(), cmd.getFirstName(), Integer.parseInt(cmd.getMatricule()), cmd.getLastName());
+            System.out.println("**** new employee " + employee.toString());
+            employeerService.createOrUpdateEmployee(employee);
+            isEmployeeUpdated = true;
+            System.out.println("**** Employee updated successfuly");
+            return CommandHandlerReplyBuilder.withSuccess(new UpdateEmployeeReply(oldEmployee));
+        } catch (Exception e) {
+            if (!isEmployeeUpdated) {
+                return CommandHandlerReplyBuilder.withFailure(new EmployeeNotUpdated());
+            } else {
+                return CommandHandlerReplyBuilder.withSuccess(new UpdateEmployeeReply(oldEmployee));
             }
         }
     }

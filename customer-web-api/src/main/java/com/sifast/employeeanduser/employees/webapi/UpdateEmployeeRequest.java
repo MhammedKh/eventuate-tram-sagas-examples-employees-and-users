@@ -1,10 +1,6 @@
-package com.sifast.employees.api.commands;
+package com.sifast.employeeanduser.employees.webapi;
 
-import io.eventuate.tram.commands.common.Command;
-
-public class UpdateEmployeeCommand implements Command {
-
-    private int id;
+public class UpdateEmployeeRequest {
 
     private String firstName;
 
@@ -12,22 +8,17 @@ public class UpdateEmployeeCommand implements Command {
 
     private String lastName;
 
-    public UpdateEmployeeCommand() {
+    private String email;
+
+    public UpdateEmployeeRequest() {
     }
 
-    public UpdateEmployeeCommand(int id, String firstName, String matricule, String lastName) {
-        this.id = id;
+    public UpdateEmployeeRequest(String firstName, String matricule, String lastName, String email) {
+        super();
         this.firstName = firstName;
         this.matricule = matricule;
         this.lastName = lastName;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.email = email;
     }
 
     public String getFirstName() {
@@ -52,6 +43,14 @@ public class UpdateEmployeeCommand implements Command {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }

@@ -13,7 +13,7 @@ public class UpdateUserRequest {
     public UpdateUserRequest() {
     }
 
-    public UpdateUserRequest(Long orderId, String firstName, String matricule, String lastName, String email) {
+    public UpdateUserRequest(String firstName, String matricule, String lastName, String email) {
         super();
         this.firstName = firstName;
         this.matricule = matricule;

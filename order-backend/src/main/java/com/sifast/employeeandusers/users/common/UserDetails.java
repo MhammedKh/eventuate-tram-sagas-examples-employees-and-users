@@ -5,7 +5,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class UserDetails {
 
-    private Long id;
+    private int id;
 
     private String firstName;
 
@@ -26,7 +26,7 @@ public class UserDetails {
         this.email = email;
     }
 
-    public UserDetails(Long id, String firstName, String matricule, String lastName, String email) {
+    public UserDetails(int id, String firstName, String matricule, String lastName, String email) {
         super();
         this.id = id;
         this.firstName = firstName;
@@ -35,11 +35,11 @@ public class UserDetails {
         this.email = email;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
