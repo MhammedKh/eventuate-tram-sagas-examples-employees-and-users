@@ -10,18 +10,12 @@ public class RejectEmployeeForUpdateCommand implements Command {
 
     private Employee oldEmployee;
 
-    private boolean isRejectCreate;
-
-    private boolean isRejectUpdate;
-
     public RejectEmployeeForUpdateCommand() {
     }
 
-    public RejectEmployeeForUpdateCommand(Employee oldEmployee, boolean isRejectCreate, boolean isRejectUpdate) {
+    public RejectEmployeeForUpdateCommand(Employee oldEmployee) {
         super();
         this.oldEmployee = oldEmployee;
-        this.isRejectCreate = isRejectCreate;
-        this.isRejectUpdate = isRejectUpdate;
     }
 
     public int getUserId() {
@@ -38,22 +32,6 @@ public class RejectEmployeeForUpdateCommand implements Command {
 
     public void setOldEmployee(Employee oldEmployee) {
         this.oldEmployee = oldEmployee;
-    }
-
-    public boolean isRejectCreate() {
-        return isRejectCreate;
-    }
-
-    public void setRejectCreate(boolean isRejectCreate) {
-        this.isRejectCreate = isRejectCreate;
-    }
-
-    public boolean isRejectUpdate() {
-        return isRejectUpdate;
-    }
-
-    public void setRejectUpdate(boolean isRejectUpdate) {
-        this.isRejectUpdate = isRejectUpdate;
     }
 
 }

@@ -9,7 +9,6 @@ import com.sifast.employees.api.commands.CreateEmployeeCommand;
 import com.sifast.employees.api.commands.UpdateEmployeeCommand;
 import com.sifast.employees.api.replies.EmployeeCreated;
 import com.sifast.employees.api.replies.EmployeeNotCreated;
-import com.sifast.employees.api.replies.EmployeeNotUpdated;
 
 import io.eventuate.tram.commands.consumer.CommandHandlerReplyBuilder;
 import io.eventuate.tram.commands.consumer.CommandHandlers;
@@ -49,24 +48,20 @@ public class EmployeeCommandHandler {
     }
 
     public Message rejectEmployee(CommandMessage<RejectEmployeeForUpdateCommand> cm) {
-        try {
-            System.out.println("**** update Employee in progress " + cm.getCommand().getOldEmployee());
-            employeerService.createOrUpdateEmployee(cm.getCommand().getOldEmployee());
-            return CommandHandlerReplyBuilder.withSuccess();
-        } catch (Exception e) {
-            return CommandHandlerReplyBuilder.withFailure();
-        }
+        System.out.println("**** reject Employee in progress " + cm.getCommand().getOldEmployee());
+        employeerService.createOrUpdateEmployee(cm.getCommand().getOldEmployee());
+        return CommandHandlerReplyBuilder.withSuccess();
     }
 
     public Message updateEmployee(CommandMessage<UpdateEmployeeCommand> cm) {
         System.out.println("**** update Employee in progress");
         UpdateEmployeeCommand cmd = cm.getCommand();
-        boolean isEmployeeUpdated = false;
         Employee oldEmployee = null;
+        boolean isEmployeeUpdated = false;
         try {
             oldEmployee = employeerService.findById(cmd.getId());
-            System.out.println("**** old employee " + oldEmployee.toString());
             Employee employee = new Employee(oldEmployee.getId(), oldEmployee.getUserId(), cmd.getFirstName(), Integer.parseInt(cmd.getMatricule()), cmd.getLastName());
+            System.out.println("**** old employee " + oldEmployee.toString());
             System.out.println("**** new employee " + employee.toString());
             employeerService.createOrUpdateEmployee(employee);
             isEmployeeUpdated = true;
@@ -74,7 +69,7 @@ public class EmployeeCommandHandler {
             return CommandHandlerReplyBuilder.withSuccess(new UpdateEmployeeReply(oldEmployee));
         } catch (Exception e) {
             if (!isEmployeeUpdated) {
-                return CommandHandlerReplyBuilder.withFailure(new EmployeeNotUpdated());
+                return CommandHandlerReplyBuilder.withFailure(new UpdateEmployeeReply(oldEmployee));
             } else {
                 return CommandHandlerReplyBuilder.withSuccess(new UpdateEmployeeReply(oldEmployee));
             }

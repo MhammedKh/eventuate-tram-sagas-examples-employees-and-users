@@ -37,8 +37,8 @@ public class EmployeeController {
     @RequestMapping(value = "/employees/{id}", method = RequestMethod.PUT)
     public UpdateEmployeeResponse updateOrder(@RequestBody UpdateEmployeeRequest updateEmployeeRequest, @PathVariable("id") int id) {
 
-        UpdateEmployeeSagaData data = new UpdateEmployeeSagaData(id, updateEmployeeRequest.getFirstName(), updateEmployeeRequest.getLastName(),
-                updateEmployeeRequest.getMatricule(), updateEmployeeRequest.getEmail());
+        UpdateEmployeeSagaData data = new UpdateEmployeeSagaData(id, updateEmployeeRequest.getFirstName(), updateEmployeeRequest.getMatricule(),
+                updateEmployeeRequest.getLastName(), updateEmployeeRequest.getEmail());
         System.out.println("**** data " + data);
         updateEmployeeSagaManager.create(data);
         return new UpdateEmployeeResponse(id);

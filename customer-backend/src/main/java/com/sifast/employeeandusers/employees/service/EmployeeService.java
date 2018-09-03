@@ -2,12 +2,13 @@ package com.sifast.employeeandusers.employees.service;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sifast.employeeandusers.employees.domain.Employee;
 import com.sifast.employeeandusers.employees.domain.EmployeeRepository;
 
-@Transactional
+@Transactional(propagation = Propagation.REQUIRED)
 public class EmployeeService {
 
     @Autowired

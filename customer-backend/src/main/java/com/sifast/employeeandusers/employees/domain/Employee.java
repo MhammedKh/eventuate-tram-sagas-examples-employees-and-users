@@ -28,6 +28,9 @@ public class Employee {
     @Column(name = "EMP_LAST_NAME", nullable = false, length = 50)
     private String lastName;
 
+    public Employee() {
+    }
+
     public Employee(int userId, String firstName, int matricule, String lastName) {
         super();
         this.userId = userId;

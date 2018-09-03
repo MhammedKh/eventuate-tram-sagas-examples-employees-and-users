@@ -33,6 +33,7 @@ public class UpdateEmployeeSaga implements SimpleSaga<UpdateEmployeeSagaData> {
 
     public CommandWithDestination reject(UpdateEmployeeSagaData data) {
         System.out.println("***reject" + data.getId());
-        return send(new RejectEmployeeForUpdateCommand(data.getOldEmployee(), false, true)).to("employeeService").build();
+        System.out.println("***reject" + data.getOldEmployee());
+        return send(new RejectEmployeeForUpdateCommand(data.getOldEmployee())).to("employeeService").build();
     }
 }
