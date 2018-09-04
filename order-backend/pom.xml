@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.sifast.employeeandusers</groupId>
+		<artifactId>employeeandusers</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<properties>
+		<main.basedir>${project.basedir}/..</main.basedir>
+	</properties>
+	<artifactId>order-backend</artifactId>
+	<name>order-backend</name>
+	<dependencies>
+		<dependency>
+			<groupId>com.sifast.employeeandusers</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sifast.employeeandusers</groupId>
+			<artifactId>customer-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sifast.employeeandusers</groupId>
+			<artifactId>user-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+				<groupId>io.eventuate.tram.sagas</groupId>
+				<artifactId>eventuate-jpa-sagas-framework</artifactId>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/io.eventuate.tram.sagas/eventuate-tram-sagas-simple-dsl -->
+			<dependency>
+				<groupId>io.eventuate.tram.sagas</groupId>
+				<artifactId>eventuate-tram-sagas-simple-dsl</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>io.eventuate.tram.core</groupId>
+				<artifactId>eventuate-tram-jdbc-kafka</artifactId>
+			</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+	</dependencies>
+
+</project>

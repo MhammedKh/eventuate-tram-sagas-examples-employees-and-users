@@ -1,0 +1,11 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "aemployeeandusers api 1.0.0 description",
+    "version" : "1.0.0",
+    "title" : "employeeandusers api"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/access-control-web/api/v1.0.0",
+  "schemes" : [ "http" ]
+}

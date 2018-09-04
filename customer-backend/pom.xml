@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.sifast.employeeandusers</groupId>
+		<artifactId>employeeandusers</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<properties>
+		<main.basedir>${project.basedir}/..</main.basedir>
+	</properties>
+	<artifactId>customer-backend</artifactId>
+	<name>customer-backend</name>
+	
+
+			<dependencies>
+				<dependency>
+					<groupId>com.sifast.employeeandusers</groupId>
+					<artifactId>common</artifactId>
+					<version>0.0.1-SNAPSHOT</version>
+				</dependency>
+				<dependency>
+					<groupId>com.sifast.employeeandusers</groupId>
+					<artifactId>customer-api</artifactId>
+					<version>0.0.1-SNAPSHOT</version>
+				</dependency>
+				<dependency>
+					<groupId>com.sifast.employeeandusers</groupId>
+					<artifactId>order-backend</artifactId>
+					<version>0.0.1-SNAPSHOT</version>
+				</dependency>
+				<dependency>
+					<groupId>com.sifast.employeeandusers</groupId>
+					<artifactId>user-api</artifactId>
+					<version>0.0.1-SNAPSHOT</version>
+				</dependency>
+			<!-- https://mvnrepository.com/artifact/io.eventuate.tram.sagas/eventuate-jpa-sagas-framework -->
+			<dependency>
+				<groupId>io.eventuate.tram.sagas</groupId>
+				<artifactId>eventuate-jpa-sagas-framework</artifactId>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/io.eventuate.tram.sagas/eventuate-tram-sagas-simple-dsl -->
+		  <dependency>
+			<groupId>io.eventuate.tram.sagas</groupId>
+			<artifactId>eventuate-tram-sagas-simple-dsl</artifactId>
+		 </dependency>
+		 <!-- https://mvnrepository.com/artifact/io.eventuate.tram.core/eventuate-tram-jdbc-kafka -->
+		<dependency>
+			<groupId>io.eventuate.tram.core</groupId>
+			<artifactId>eventuate-tram-jdbc-kafka</artifactId>
+		</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+
+			</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4-1200-jdbc41</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-simple</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>  
+	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>1.5.8.RELEASE</version>
+		</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-jpa</artifactId>
+		<version>1.5.8.RELEASE</version>
+	</dependency>
+
+		</dependencies>
+
+</project>
